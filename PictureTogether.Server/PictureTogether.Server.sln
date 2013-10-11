@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureTogether.Services", "PictureTogether.Services\PictureTogether.Services.csproj", "{54306E03-631D-45ED-A8F2-5115188336F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureTogether.Data", "PictureTogether.Data\PictureTogether.Data.csproj", "{4C273D82-9367-401B-BC7C-7A4A8DEC8C05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PictureTogether.Models", "PictureTogether.Models\PictureTogether.Models.csproj", "{8AF4D21F-B28D-48A3-A663-AE2492497588}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54306E03-631D-45ED-A8F2-5115188336F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54306E03-631D-45ED-A8F2-5115188336F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54306E03-631D-45ED-A8F2-5115188336F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54306E03-631D-45ED-A8F2-5115188336F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C273D82-9367-401B-BC7C-7A4A8DEC8C05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C273D82-9367-401B-BC7C-7A4A8DEC8C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C273D82-9367-401B-BC7C-7A4A8DEC8C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C273D82-9367-401B-BC7C-7A4A8DEC8C05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AF4D21F-B28D-48A3-A663-AE2492497588}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AF4D21F-B28D-48A3-A663-AE2492497588}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AF4D21F-B28D-48A3-A663-AE2492497588}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AF4D21F-B28D-48A3-A663-AE2492497588}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
