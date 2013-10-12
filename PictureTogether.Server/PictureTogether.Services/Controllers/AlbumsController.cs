@@ -49,6 +49,7 @@ namespace PictureTogether.Services.Controllers
                                    {
                                        Url = filePath
                                    });
+
                                context.SaveChanges();
                            }
                        }
