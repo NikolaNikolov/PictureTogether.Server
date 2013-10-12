@@ -14,5 +14,8 @@ namespace PictureTogether.Services.Models
 
         [DataMember(Name = "sessionKey")]
         public string SessionKey { get; set; }
+
+        [DataMember(Name = "albums")]
+        public List<AlbumModel> Albums { get; set; }
     }
 }

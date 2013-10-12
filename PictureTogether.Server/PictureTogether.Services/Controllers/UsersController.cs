@@ -103,7 +103,12 @@ namespace PictureTogether.Services.Controllers
                         var loggedModel = new LoggedUserModel
                         {
                             Username = user.Username,
-                            SessionKey = user.SessionKey
+                            SessionKey = user.SessionKey,
+                            Albums = user.Albums.Select(a => new AlbumModel
+                            {
+                                Id = a.Id,
+                                Name = a.Name
+                            }).ToList()
                         };
 
                         var response =

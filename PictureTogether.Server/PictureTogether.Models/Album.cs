@@ -7,24 +7,22 @@ using System.Threading.Tasks;
 
 namespace PictureTogether.Models
 {
-    public class User
+    public class Album
     {
-        public User()
+        public Album()
         {
-            this.Albums = new HashSet<Album>();
+            this.Pictures = new HashSet<Picture>();
+            this.Users = new HashSet<User>();
         }
 
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public string Username { get; set; }
+        public string Name { get; set; }
 
-        [Required]
-        public string AuthCode { get; set; }
+        public virtual ICollection<User> Users { get; set; }
 
-        public string SessionKey { get; set; }
-
-        public virtual ICollection<Album> Albums { get; set; }
+        public virtual ICollection<Picture> Pictures { get; set; }
     }
 }

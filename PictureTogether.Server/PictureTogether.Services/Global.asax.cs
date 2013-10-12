@@ -20,6 +20,7 @@ namespace PictureTogether.Services
         protected void Application_Start()
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<PictureTogetherContext, Configuration>());
+            //Database.SetInitializer(new DropCreateDatabaseAlways<PictureTogetherContext>());
             AreaRegistration.RegisterAllAreas();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);

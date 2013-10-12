@@ -16,5 +16,9 @@ namespace PictureTogether.Data
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<Album> Albums { get; set; }
+
+        public DbSet<Picture> Pictures { get; set; }
     }
 }
