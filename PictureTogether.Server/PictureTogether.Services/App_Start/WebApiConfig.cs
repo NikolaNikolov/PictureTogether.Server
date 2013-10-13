@@ -10,6 +10,23 @@ namespace PictureTogether.Services
         public static void Register(HttpConfiguration config)
         {
             config.Routes.MapHttpRoute(
+                name: "AppHarborApi",
+                routeTemplate: "api/appharbor/{action}",
+                defaults: new
+                {
+                    controller = "appharbor"
+                });
+
+            config.Routes.MapHttpRoute(
+                name: "AlbumsApi",
+                routeTemplate: "api/albums/{action}/{id}",
+                defaults: new
+                {
+                    controller = "albums",
+                    id = RouteParameter.Optional
+                });
+
+            config.Routes.MapHttpRoute(
                 name: "UsersApi",
                 routeTemplate: "api/users/{action}",
                 defaults: new
@@ -17,11 +34,11 @@ namespace PictureTogether.Services
                     controller = "users",
                 });
 
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
 
             // Uncomment the following line of code to enable query support for actions with an IQueryable or IQueryable<T> return type.
             // To avoid processing unexpected or malicious queries, use the validation settings on QueryableAttribute to validate incoming queries.

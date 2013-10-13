@@ -15,50 +15,67 @@ namespace PictureTogether.Services.Controllers
     public class AlbumsController : BaseApiController
     {
         // GET api/albums/id?sessionKey=...
-        //public IEnumerable<AlbumFullModel> Get(int id, string sessionKey)
-        //{
-        //    return new string[] { "value1", "value2" };
-        //}
-
-        // POST api/albums
-        //public void Post([FromBody]string value)
-        //{
-        //}
-
-        // POST api/albums/picture
-        [ActionName("picture")]
-        public HttpResponseMessage PostPicture()
+        [ActionName("get")]
+        public AlbumFullModel Get(int id, string sessionKey)
         {
-            var responseMsg = this.PerformOperationAndHandleExceptions<HttpResponseMessage>(
-               () =>
-               {
-                   var files = HttpContext.Current.Request.Files;
+            var responseMsg = this.PerformOperationAndHandleExceptions<AlbumFullModel>(() =>
+            {
+                using (var context = new PictureTogetherContext())
+                {
+                    UsersController.ValidateSessionKey(sessionKey);
 
-                   if (files.Count > 0)
-                   {
-                       for (int i = 0; i < files.Count; i++)
-                       {
-                           var postedFile = files[i];
-                           var filePath = HttpContext.Current.Server.MapPath(Path.GetTempPath() + postedFile.FileName);
-                           postedFile.SaveAs(filePath);
+                    var album = context.Albums.Find(id);
+                    var albumFullModel = new AlbumFullModel
+                    {
+                        Id = album.Id,
+                        Name = album.Name,
+                        Pictures = album.Pictures.Select(p => new PictureModel
+                        {
+                            Id = p.Id,
+                            Url = p.Url
+                        }).ToList()
+                    };
 
-                           using (var context = new PictureTogetherContext())
-                           {
-                               context.Albums.First().Pictures.Add(
-                                   new Picture
-                                   {
-                                       Url = filePath
-                                   });
+                    return albumFullModel;
+                }
+            });
 
-                               context.SaveChanges();
-                           }
-                       }
+            return responseMsg;
+        }
 
-                       return this.Request.CreateResponse(HttpStatusCode.Created);
-                   }
+        // POST api/albums/picture?sessionKey=...
+        [ActionName("picture")]
+        public HttpResponseMessage PostPicture(int sessionKey)
+        {
+            var responseMsg = this.PerformOperationAndHandleExceptions<HttpResponseMessage>(() =>
+            {
+                var files = HttpContext.Current.Request.Files;
 
-                   return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "error");
-               });
+                if (files.Count > 0)
+                {
+                    for (int i = 0; i < files.Count; i++)
+                    {
+                        var postedFile = files[i];
+                        var filePath = HttpContext.Current.Server.MapPath(Path.GetTempPath() + postedFile.FileName);
+                        postedFile.SaveAs(filePath);
+
+                        using (var context = new PictureTogetherContext())
+                        {
+                            context.Albums.First().Pictures.Add(
+                                new Picture
+                                {
+                                    Url = filePath
+                                });
+
+                            context.SaveChanges();
+                        }
+                    }
+
+                    return this.Request.CreateResponse(HttpStatusCode.Created);
+                }
+
+                return this.Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No file received from the server.");
+            });
 
             return responseMsg;
         }

@@ -16,6 +16,22 @@ namespace PictureTogether.Data.Migrations
 
         protected override void Seed(PictureTogether.Data.PictureTogetherContext context)
         {
+            var pictures = new Picture[]
+            {
+                new Picture
+                {
+                    Url = "http://s0.uploads.im//mlzVJ.jpg"
+                },
+                new Picture
+                {
+                    Url = "http://s0.uploads.im//bVwJM.jpg"
+                },
+                new Picture
+                {
+                    Url = "http://s0.uploads.im//Gq2Wj.jpg"
+                }
+            };
+
             var users = new User[]{
                 new User
                 {
@@ -36,7 +52,8 @@ namespace PictureTogether.Data.Migrations
                     Name = "First",
                     Users = {
                         users[0]
-                    }
+                    },
+                    Pictures = pictures
                 },
                 new Album
                 {
