@@ -124,5 +124,61 @@ namespace PictureTogether.Services.Controllers
 
             return responseMsg;
         }
+
+        // PUT api/albums/album?sessionKey=...
+        [ActionName("album")]
+        public HttpResponseMessage PutAlbum(string sessionKey, ShareCodeModel shareCodeModel)
+        {
+            var responseMsg = this.PerformOperationAndHandleExceptions<HttpResponseMessage>(() =>
+            {
+                using (var context = new PictureTogetherContext())
+                {
+                    UsersController.ValidateSessionKey(sessionKey);
+                    var currentUser = context.Users.FirstOrDefault(u => u.SessionKey == sessionKey);
+                    if (currentUser == null)
+                    {
+                        throw new ArgumentException("Expired or invalid sessionKey. Please try to relog with your account.");
+                    }
+
+                    var album = context.Albums.Find(shareCodeModel.AlbumId);
+                    if (album == null)
+                    {
+                        throw new ArgumentException("Invalid share code.");
+                    }
+
+                    var sharingUser = context.Users.FirstOrDefault(u => u.Username == shareCodeModel.Username);
+                    if (sharingUser == null)
+                    {
+                        throw new ArgumentException("Invalid share code.");
+                    }
+
+                    var sharingUserAlbum = sharingUser.Albums.FirstOrDefault(a => a.Id == album.Id);
+                    if (sharingUserAlbum == null)
+                    {
+                        throw new ArgumentException("Invalid share code.");
+                    }
+
+                    var currentUserAlbum = currentUser.Albums.FirstOrDefault(a => a.Id == album.Id);
+                    if (currentUserAlbum != null)
+                    {
+                        throw new ArgumentException("This album is already shared with you.");
+                    }
+
+                    currentUser.Albums.Add(album);
+                    album.Users.Add(currentUser);
+                    context.SaveChanges();
+
+                    var albumModel = new AlbumModel
+                    {
+                        Id = album.Id,
+                        Name = album.Name
+                    };
+                    var response = this.Request.CreateResponse(HttpStatusCode.OK, albumModel);
+                    return response;
+                }
+            });
+
+            return responseMsg;
+        }
     }
 }
