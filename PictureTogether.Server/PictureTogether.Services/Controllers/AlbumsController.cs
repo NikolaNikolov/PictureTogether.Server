@@ -117,6 +117,7 @@ namespace PictureTogether.Services.Controllers
                         Id = newAlbum.Id,
                         Name = newAlbum.Name
                     };
+
                     var response = this.Request.CreateResponse(HttpStatusCode.Created, albumModel);
                     return response;
                 }
