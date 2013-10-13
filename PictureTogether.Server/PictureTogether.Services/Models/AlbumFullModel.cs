@@ -15,6 +15,12 @@ namespace PictureTogether.Services.Models
         [DataMember(Name = "name")]
         public string Name { get; set; }
 
+        [DataMember(Name = "latitude")]
+        public string Latitude { get; set; }
+
+        [DataMember(Name = "longitude")]
+        public string Longitude { get; set; }
+
         [DataMember(Name = "pictures")]
         public List<PictureModel> Pictures { get; set; }
     }

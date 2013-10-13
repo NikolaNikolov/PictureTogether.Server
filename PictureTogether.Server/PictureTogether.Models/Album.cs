@@ -21,6 +21,10 @@ namespace PictureTogether.Models
         [Required]
         public string Name { get; set; }
 
+        public string Latitude { get; set; }
+
+        public string Longitude { get; set; }
+
         public virtual ICollection<User> Users { get; set; }
 
         public virtual ICollection<Picture> Pictures { get; set; }

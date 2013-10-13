@@ -53,6 +53,8 @@ namespace PictureTogether.Data.Migrations
                     Users = {
                         users[0]
                     },
+                    Latitude = "48.861496",
+                    Longitude = "2.342148",
                     Pictures = pictures
                 },
                 new Album
@@ -60,28 +62,36 @@ namespace PictureTogether.Data.Migrations
                     Name = "Second",
                     Users = {
                         users[0]
-                    }
+                    },
+                    Latitude = "48.861496",
+                    Longitude = "2.342148",
                 },
                 new Album
                 {
                     Name = "Third",
                     Users = {
                         users[0]
-                    }
+                    },
+                    Latitude = "48.861496",
+                    Longitude = "2.342148",
                 },
                 new Album
                 {
                     Name = "Fourth",
                     Users = {
                         users[0]
-                    }
+                    },
+                    Latitude = "48.861496",
+                    Longitude = "2.342148",
                 },
                 new Album
                 {
                     Name = "Fifth",
                     Users = {
                         users[0]
-                    }
+                    },
+                    Latitude = "48.861496",
+                    Longitude = "2.342148",
                 }
             };
 
