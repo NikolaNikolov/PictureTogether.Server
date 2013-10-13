@@ -112,8 +112,12 @@ namespace PictureTogether.Services.Controllers
                     context.Albums.Add(newAlbum);
                     context.SaveChanges();
 
-                    albumFullModel.Id = newAlbum.Id;
-                    var response = this.Request.CreateResponse(HttpStatusCode.Created, albumFullModel);
+                    var albumModel = new AlbumModel
+                    {
+                        Id = newAlbum.Id,
+                        Name = newAlbum.Name
+                    };
+                    var response = this.Request.CreateResponse(HttpStatusCode.Created, albumModel);
                     return response;
                 }
             });
